@@ -1,5 +1,5 @@
 # @title 📊 Startup Funding Dashboard {display-mode: "form"}
-
+# This version run on google colab.
 import json
 import pandas as pd
 import numpy as np
