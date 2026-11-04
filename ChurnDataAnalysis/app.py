@@ -5,9 +5,9 @@ import numpy as np
 import joblib
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
+#BASE_DIR = Path(__file__).resolve().parent
 
-MODEL_PATH = BASE_DIR / "telco_churn_model.joblib"
+#MODEL_PATH = BASE_DIR / "telco_churn_model.joblib"
 
 print("Joblib installed successfully")
 print("Joblib version:", joblib.__version__)
