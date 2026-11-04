@@ -43,7 +43,7 @@ st.set_page_config(
 
 @st.cache_resource
 def load_model():
-    return joblib.load(MODEL_PATH)
+    return joblib.load("ChurnDataAnalysis/telco_churn_model.joblib")
 
 artifact = load_model()
 
