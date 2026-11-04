@@ -4,6 +4,9 @@ import pandas as pd
 import numpy as np
 import joblib
 
+print("Joblib installed successfully")
+print("Joblib version:", joblib.__version__)
+
 # -------------------------------
 # Page configuration
 # -------------------------------
