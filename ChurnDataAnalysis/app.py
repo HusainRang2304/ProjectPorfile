@@ -28,13 +28,28 @@ st.set_page_config(
 
 @st.cache_resource
 def load_model():
-    return joblib.load("telco_churn_model.joblib")
+    if not MODEL_PATH.exists():
+        st.error(f"Model file not found: {MODEL_PATH}")
+        st.stop()
+
+    return joblib.load(MODEL_PATH)
 
 artifact = load_model()
 
 model = artifact["model"]
 threshold = artifact["threshold"]
 feature_columns = artifact["feature_columns"]
+
+
+#@st.cache_resource
+#def load_model():
+#    return joblib.load("telco_churn_model.joblib")
+
+#artifact = load_model()
+
+#model = artifact["model"]
+#threshold = artifact["threshold"]
+#feature_columns = artifact["feature_columns"]
 
 # -------------------------------
 # Application header
