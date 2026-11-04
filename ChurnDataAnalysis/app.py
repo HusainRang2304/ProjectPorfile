@@ -42,10 +42,11 @@ st.set_page_config(
 
 
 @st.cache_resource
-#def load_model():
- #   return joblib.load("telco_churn_model.joblib")
+def load_model():
+    return joblib.load("telco_churn_model.joblib")
 
-artifact = joblib.load("telco_churn_model.joblib")
+    
+artifact = load_model()
 
 model = artifact["model"]
 threshold = artifact["threshold"]
