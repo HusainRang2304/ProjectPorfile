@@ -49,6 +49,10 @@ feature_columns = artifact["feature_columns"]
 #threshold = artifact["threshold"]
 #feature_columns = artifact["feature_columns"]
 
+prep = model[0]
+cat_enc = prep.named_transformers_["cat"][-1]
+print(dict(zip(prep.transformers_[1][2], cat_enc.categories_)))
+
 # -------------------------------
 # Application header
 # -------------------------------
@@ -222,10 +226,20 @@ if submitted:
     prediction = int(probability >= threshold)
 
     # Risk segmentation
-    if probability >= 0.60:
+   # if probability >= 0.60:
+    #    risk = "High Risk"
+    #    action = "Prioritize customer retention outreach."
+    #elif probability >= 0.30:
+     #   risk = "Medium Risk"
+      #  action = "Consider a targeted engagement campaign."
+    #else:
+     #   risk = "Low Risk"
+      #  action = "Continue regular customer engagement."
+
+    if probability >= threshold:
         risk = "High Risk"
         action = "Prioritize customer retention outreach."
-    elif probability >= 0.30:
+    elif probability >= threshold / 2:
         risk = "Medium Risk"
         action = "Consider a targeted engagement campaign."
     else:
