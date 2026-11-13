@@ -8,9 +8,12 @@ from pathlib import Path
 #BASE_DIR = Path(__file__).resolve().parent
 
 #MODEL_PATH = BASE_DIR / "telco_churn_model.joblib"
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "telco_churn_model1.joblib"   # must match the repo filename exactly
 
-print("Joblib installed successfully")
-print("Joblib version:", joblib.__version__)
+if not MODEL_PATH.exists():
+    st.error(f"Model file not found: {MODEL_PATH}")
+    st.stop()
 
 # -------------------------------
 # Page configuration
@@ -26,31 +29,25 @@ st.set_page_config(
 # Load trained model
 # -------------------------------
 
+@st.cache_resource
+def load_model(path):
+    return joblib.load(path)
+
+artifact = load_model(MODEL_PATH)
+model = artifact["model"]
+threshold = artifact["threshold"]
+feature_columns = artifact["feature_columns"]
+
 #@st.cache_resource
 #def load_model():
-  #  if not MODEL_PATH.exists():
-  #      st.error(f"Model file not found: {MODEL_PATH}")
- #       st.stop()
+#    return joblib.load("telco_churn_model1.joblib")
 
- #   return joblib.load(MODEL_PATH)
-
+    
 #artifact = load_model()
 
 #model = artifact["model"]
 #threshold = artifact["threshold"]
 #feature_columns = artifact["feature_columns"]
-
-
-@st.cache_resource
-def load_model():
-    return joblib.load("telco_churn_model1.joblib")
-
-    
-artifact = load_model()
-
-model = artifact["model"]
-threshold = artifact["threshold"]
-feature_columns = artifact["feature_columns"]
 
 # -------------------------------
 # Application header
